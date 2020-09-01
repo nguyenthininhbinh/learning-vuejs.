@@ -1,20 +1,20 @@
-import Vue from "vue";
-import App from "./App.vue";
-import VueRouter from "vue-router";
-import { routes } from "./routes";
-import store from "./components/store/store";
-import axios from "axios";
+import Vue from 'vue';
+import App from './App.vue';
+import VueRouter from 'vue-router';
+import { routes } from './routes';
+import store from './store';
+import axios from 'axios';
 
-axios.defaults.baseURL = "https://pr-axios.firebaseio.com";
-axios.defaults.headers.common["Authorization"] = "abc";
-axios.defaults.headers.get["Accepts"] = "application/json";
+axios.defaults.baseURL = 'https://pr-axios.firebaseio.com';
+// axios.defaults.headers.common["Authorization"] = "abc";
+axios.defaults.headers.get['Accepts'] = 'application/json';
 
-const reqInterceptor = axios.interceptors.request.use(config => {
-  console.log("Request Interceptor", config);
+const reqInterceptor = axios.interceptors.request.use((config) => {
+  console.log('Request Interceptor', config);
   return config;
 });
-const resInterceptor = axios.interceptors.response.use(res => {
-  console.log("Response Interceptor", res);
+const resInterceptor = axios.interceptors.response.use((res) => {
+  console.log('Response Interceptor', res);
   return res;
 });
 
@@ -23,12 +23,12 @@ axios.interceptors.response.eject(resInterceptor);
 
 Vue.use(VueRouter);
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   store,
-  routes
+  routes,
 });
 new Vue({
-  el: "#app",
+  el: '#app',
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 });
